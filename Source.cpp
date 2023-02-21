@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "Header.h"
+#include "Headermain.h"
 
 bool Event(Table studentTable)
 {
