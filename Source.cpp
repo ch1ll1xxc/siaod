@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "Headermain.h"
+#include "Header.h"
 
 bool Event(Table studentTable)
 {
@@ -11,6 +11,7 @@ bool Event(Table studentTable)
     std::cout << "4 - Make list of students (their numbers) which average mark more than 4.0" << std::endl;
     std::cout << "5 - Remove notes about students which average mark lower than given" << std::endl;
     std::cout << "6 - Write a table" << std::endl;
+    std::cout << "7 - Remove a note" << std::endl;
     std::cout << "0 - Finish" << std::endl;
 
     std::ifstream in("input.txt");
@@ -36,17 +37,25 @@ bool Event(Table studentTable)
         studentTable.goodTable();
         Event(studentTable);
     }
-    /*if (ans == 5)
+    if (ans == 5)
     {
         float avg;
-        std::cout << "Enter average mark" << std::endl;
+        std::cout << "Enter average mark: ";
         std::cin >> avg;
         studentTable.removeByAvg(avg);
         Event(studentTable);
-    }*/
+    }
     if (ans == 6)
     {
         studentTable.output();
+        Event(studentTable);
+    }
+    if (ans == 7)
+    {
+        std::cout << "Enter index (starts from 1): ";
+        int index;
+        std::cin >> index;
+        studentTable.remove(index - 1);
         Event(studentTable);
     }
     if (ans == 0)
@@ -57,7 +66,6 @@ bool Event(Table studentTable)
 
 int main()
 {
-    setlocale(LC_ALL, "rus");
     Table studentTable;
     Event(studentTable);
     return 0;
