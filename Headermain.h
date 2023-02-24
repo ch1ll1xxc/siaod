@@ -29,16 +29,15 @@ struct Marks
             std::cout << marks[i] << " ";
         }
     }
-
-    double countAvg()
+    
+    float countAvg()
     {
-        double res = 0;
+        float res = 0;
         for (unsigned i = 0; i < 5; i++)
         {
             res += marks[i];
         }
-        double div = 5;
-        res /= div;
+        res /= 5.f;
         return res;
     }
 };
@@ -139,7 +138,6 @@ struct Table
             students[tmp_st] = tmpStudent;
             ++tmp_st;
         }
-
     }
 
     void input(std::ifstream& in)
@@ -148,7 +146,7 @@ struct Table
         {
             Student tmpStudent;
             tmpStudent.input(in);
-            ++tmp_st;
+            students[tmp_st++] = tmpStudent;
         }
     }
 
@@ -172,22 +170,26 @@ struct Table
         }
     }
 
-    void remove(unsigned index)
+    void Remove(unsigned index)
     {
         for (unsigned i = index; i < tmp_st; i++)
         {
-            students[i] = students[i+1];
+            students[i] = students[i + 1];
         }
         --tmp_st;
     }
 
-    void removeByAvg(double avg)
+    void RemoveByAvg(float avg)
     {
-        for (unsigned i = 0; i < tmp_st; i++)
+        for (unsigned i = 0; i < tmp_st;)
         {
-            if (students[i].marks.countAvg() < avg)
+            if (students[i].marks.countAvg() <= avg)
             {
-                remove(i);
+                Remove(i);
+            }
+            else
+            {
+                i++;
             }
         }
     }
