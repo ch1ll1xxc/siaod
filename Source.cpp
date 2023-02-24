@@ -1,8 +1,9 @@
 #include <iostream>
 #include <fstream>
-#include "Headermain.h"
+#include <string>
+#include "Header.h"
 
-bool Event(Table studentTable)
+bool Act(Table studentTable)
 {
     std::cout << "Enter the code of action that you want" << std::endl;
     std::cout << "1 - Fill table by keyboard" << std::endl;
@@ -15,48 +16,55 @@ bool Event(Table studentTable)
     std::cout << "0 - Finish" << std::endl;
 
     std::ifstream in("input.txt");
+    /*std::string s;
+    while (getline(in, s))
+    {
+        
+    }*/
+
     unsigned ans;
     std::cin >> ans;
+
     if (ans == 1)
     {
         studentTable.input();
-        Event(studentTable);
+        Act(studentTable);
     }
     if (ans == 2)
     {
         studentTable.input(in);
-        Event(studentTable);
+        Act(studentTable);
     }
     if (ans == 3)
     {
         studentTable.input_one();
-        Event(studentTable);
+        Act(studentTable);
     }
     if (ans == 4)
     {
         studentTable.goodTable();
-        Event(studentTable);
+        Act(studentTable);
     }
     if (ans == 5)
     {
         float avg;
         std::cout << "Enter average mark: ";
         std::cin >> avg;
-        studentTable.removeByAvg(avg);
-        Event(studentTable);
+        studentTable.RemoveByAvg(avg);
+        Act(studentTable);
     }
     if (ans == 6)
     {
         studentTable.output();
-        Event(studentTable);
+        Act(studentTable);
     }
     if (ans == 7)
     {
         std::cout << "Enter index (starts from 1): ";
         int index;
         std::cin >> index;
-        studentTable.remove(index - 1);
-        Event(studentTable);
+        studentTable.Remove(index - 1);
+        Act(studentTable);
     }
     if (ans == 0)
     {
@@ -67,6 +75,6 @@ bool Event(Table studentTable)
 int main()
 {
     Table studentTable;
-    Event(studentTable);
+    Act(studentTable);
     return 0;
 }
