@@ -3,7 +3,7 @@
 #include <string>
 #include "Header.h"
 
-bool Act(Table studentTable)
+void Act(Table_Vector studentTable)
 {
     std::cout << "Enter the code of action that you want" << std::endl;
     std::cout << "1 - Fill table by keyboard" << std::endl;
@@ -12,16 +12,10 @@ bool Act(Table studentTable)
     std::cout << "4 - Make list of students (their numbers) which average mark more than 4.0" << std::endl;
     std::cout << "5 - Remove notes about students which average mark lower than given" << std::endl;
     std::cout << "6 - Write a table" << std::endl;
-    std::cout << "7 - Remove a note" << std::endl;
     std::cout << "0 - Finish" << std::endl;
 
     std::ifstream in("input.txt");
-    /*std::string s;
-    while (getline(in, s))
-    {
-        
-    }*/
-
+    
     unsigned ans;
     std::cin >> ans;
 
@@ -58,23 +52,16 @@ bool Act(Table studentTable)
         studentTable.output();
         Act(studentTable);
     }
-    if (ans == 7)
-    {
-        std::cout << "Enter index (starts from 1): ";
-        int index;
-        std::cin >> index;
-        studentTable.Remove(index - 1);
-        Act(studentTable);
-    }
     if (ans == 0)
     {
-        return 0;
+        return;
     }
 }
 
 int main()
 {
-    Table studentTable;
+    Table_Vector studentTable;
     Act(studentTable);
     return 0;
 }
+
